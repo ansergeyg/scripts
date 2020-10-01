@@ -1,0 +1,16 @@
+#!/bin/bash
+#How to run: bash rmconfdup.sh module_name
+#Path to the folder with generated configuration. $1 is the input parameter denoting module name.
+
+folder_path=lib/modules/$1/config/install;
+
+echo "Removing existing config files in $1"
+msg=$((drush en $1)2>&1)
+output=$(echo "$msg" | tr -d \\0 | grep -z -o "\((.*)\)" | grep -z -o "[^(].*[^)]")
+output_normalized=$(echo $output | tr -d '[:space:]')
+IFS=',' read -a files <<<$output_normalized
+for i in "${files[@]}"
+do
+   echo "Removing $i"
+   rm -rf $folder_path/$i.yml
+done
