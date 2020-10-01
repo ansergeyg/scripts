@@ -10,7 +10,7 @@ output_normalized=$(echo $output | tr -d '[:space:]')
 IFS=',' read -a files <<<$output_normalized
 for i in "${files[@]}"
 do
-   echo "Removing $i"
+	echo "Removing $i"
 	#Use sudo rm if you need root privileges.
-   rm -f $folder_path/$i.yml
+	rm -f $folder_path/$i.yml
 done
