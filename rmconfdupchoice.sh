@@ -12,12 +12,12 @@ for i in "${files[@]}"
 do
 	echo "Do you want to remove $i? Type 1 for Yes and 2 for No"
 	select yn in "Yes" "No"; do
-	    case $yn in
-	        Yes ) 
-				echo "Removing $i";
-				#Use sudo rm if you need root privileges.
-				rm -f $folder_path/$i.yml; break;;
-			No ) break;;
-	    esac
+	case $yn in
+		Yes ) 
+			echo "Removing $i";
+			#Use sudo rm if you need root privileges.
+			rm -f $folder_path/$i.yml; break;;
+		No ) break;;
+	esac
 	done
 done
